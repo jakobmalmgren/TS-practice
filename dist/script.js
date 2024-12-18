@@ -111,3 +111,65 @@ function throwTwoDices() {
         }
     }, 10000);
 }
+//fourth//
+// Going to Boston
+// Spelet har 3st tärningar.
+// Kasta tärningarna och spara tärningen med högsta värdet.
+// Kasta de kvarvarande 2 och spara tärningen med högsta värdet.
+// Kasta sista tärningen och summera samtliga tre tärningar.
+// Spelaren med högst summerat värde vinner. Max poäng är 18.
+let värde = 0;
+let dicesArray = [];
+let firstVal = throwThreeDices();
+let secondtVal = throwThreeDices();
+let thirdVal = throwThreeDices();
+const bostonBtn = document.querySelector(".bostonDices");
+bostonBtn === null || bostonBtn === void 0 ? void 0 : bostonBtn.addEventListener("click", () => {
+    if (dicesArray.length === 0) {
+        firstVal = throwThreeDices();
+        secondtVal = throwThreeDices();
+        thirdVal = throwThreeDices();
+        console.log(`firstval = ${firstVal}`);
+        console.log(`secondval = ${secondtVal}`);
+        console.log(`thirdval = ${thirdVal}`);
+        if (firstVal > secondtVal || firstVal > thirdVal) {
+            dicesArray.push(firstVal);
+            console.log(dicesArray);
+        }
+        else if (secondtVal > firstVal || secondtVal > thirdVal) {
+            dicesArray.push(secondtVal);
+        }
+        else if (thirdVal > firstVal || thirdVal > secondtVal) {
+            dicesArray.push(thirdVal);
+        }
+    }
+    else if (dicesArray.length === 1) {
+        firstVal = throwThreeDices();
+        secondtVal = throwThreeDices();
+        if (firstVal > secondtVal) {
+            dicesArray.push(firstVal);
+            console.log(dicesArray);
+        }
+        else if (secondtVal > firstVal) {
+            dicesArray.push(secondtVal);
+        }
+    }
+    else if (dicesArray.length === 2) {
+        firstVal = throwThreeDices();
+        dicesArray.push(firstVal);
+    }
+    console.log(dicesArray);
+    if (dicesArray.length === 3) {
+        for (let i = 0; i < dicesArray.length; i++) {
+            värde += dicesArray[i];
+        }
+        console.log(värde);
+        alert(värde);
+        bostonBtn.setAttribute("disabled", "");
+    }
+});
+function throwThreeDices() {
+    value = Math.floor(Math.random() * dizeObj.sides + 1);
+    console.log(value);
+    return value;
+}
